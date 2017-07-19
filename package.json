@@ -1,0 +1,20 @@
+{
+  "name": "pr0xy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "remove-oldest-deploy": "URL=\"$(now ls proxy | tail -n 2 | awk '{print $1}' | xargs echo -n)\"; now rm --yes \"${URL}\"",
+    "deploy": "now --public && now-realias && yarn remove-oldest-deploy"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "now": "^7.2.4",
+    "now-realias": "^1.1.2"
+  }
+}
